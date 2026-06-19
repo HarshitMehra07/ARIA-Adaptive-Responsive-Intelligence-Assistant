@@ -1,18 +1,7 @@
-import sqlite3
+# tests/cleanup_duplicates.py
 
-conn = sqlite3.connect("aria.db")
-cursor = conn.cursor()
+from memory.memory_manager import MemoryManager
 
-cursor.execute("""
-DELETE FROM memories
-WHERE id NOT IN (
-    SELECT MIN(id)
-    FROM memories
-    GROUP BY content
-)
-""")
+MemoryManager.delete_all_memories()
 
-conn.commit()
-conn.close()
-
-print("Duplicate Memories Removed")
+print("Database Cleaned")

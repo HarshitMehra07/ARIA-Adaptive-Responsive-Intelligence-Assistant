@@ -1,5 +1,6 @@
-from memory.memory_classifier import MemoryClassifier
 from memory.importance_engine import ImportanceEngine
+from memory.memory_classifier import MemoryClassifier
+from memory.memory_type_engine import MemoryTypeEngine
 from memory.memory_filter import MemoryFilter
 from memory.memory_manager import MemoryManager
 
@@ -7,16 +8,26 @@ from memory.memory_manager import MemoryManager
 class ARIACore:
 
     @staticmethod
-    def process_memory(text):
+    def process(text):
 
+        print("\n========================")
+        print("USER:", text)
+
+        # Category Detection
         category = MemoryClassifier.classify(text)
 
+        # Importance Score
         importance = ImportanceEngine.score(text)
 
-        print(f"Category: {category}")
-        print(f"Importance: {importance}")
+        # Memory Type
+        memory_type = MemoryTypeEngine.determine_type(text)
 
-        if importance >= 20:
+        print("Category:", category)
+        print("Importance:", importance)
+        print("Memory Type:", memory_type)
+
+        # Store Decision
+        if MemoryFilter.should_store(text):
 
             MemoryManager.save_memory(
                 category=category,
@@ -24,8 +35,10 @@ class ARIACore:
                 importance=importance
             )
 
-            print("Memory Stored")
+            print("Status: Memory Stored")
 
         else:
 
-            print("Memory Ignored")
+            print("Status: Memory Ignored")
+
+        print("========================")
