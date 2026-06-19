@@ -1,17 +1,25 @@
 class MemoryFilter:
 
     IMPORTANT_KEYWORDS = [
-        "goal",
-        "dream",
-        "project",
-        "study",
-        "college",
-        "career",
-        "health",
-        "gym",
-        "exam",
-        "important"
-    ]
+    "goal",
+    "dream",
+    "project",
+    "study",
+    "college",
+    "career",
+    "health",
+    "gym",
+    "exam",
+    "important",
+    "engineer",
+    "ai",
+    "machine learning",
+    "skill",
+    "job",
+    "business",
+    "startup",
+    "achievement"
+]
 
     @staticmethod
     def calculate_importance(text):

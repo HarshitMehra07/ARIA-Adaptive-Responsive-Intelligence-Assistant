@@ -1,9 +1,8 @@
-from memory.memory_filter import MemoryFilter
+from memory.memory_manager import MemoryManager
 
-text = "My goal is to become an AI Engineer"
+memories = MemoryManager.get_memories_by_category("career")
 
-score = MemoryFilter.calculate_importance(text)
+print("\nCareer Memories:\n")
 
-print("Score:", score)
-
-print("Store:", MemoryFilter.should_store(text))
+for memory in memories:
+    print("-", memory[0])
