@@ -3,7 +3,7 @@ from memory.memory_classifier import MemoryClassifier
 from memory.memory_type_engine import MemoryTypeEngine
 from memory.memory_filter import MemoryFilter
 from memory.memory_manager import MemoryManager
-
+from memory.profile_builder import ProfileBuilder
 
 class ARIACore:
 
@@ -42,3 +42,5 @@ class ARIACore:
             print("Status: Memory Ignored")
 
         print("========================")
+        
+        ProfileBuilder.update_profile(text)
