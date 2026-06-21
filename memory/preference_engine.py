@@ -34,3 +34,12 @@ class PreferenceEngine:
     def get_preferences():
 
         return PreferenceEngine.preferences
+    
+    @staticmethod
+    def extract(text):
+
+       PreferenceEngine.learn(text)
+
+       return (
+        PreferenceEngine.get_preferences()
+    )

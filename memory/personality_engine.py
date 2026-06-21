@@ -41,3 +41,10 @@ class PersonalityEngine:
     def get_mode():
 
         return PersonalityEngine.current_mode
+    
+    @staticmethod
+    def detect(text):
+
+     return (
+        PersonalityEngine.get_mode()
+    )
