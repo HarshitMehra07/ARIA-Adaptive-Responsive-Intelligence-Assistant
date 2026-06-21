@@ -11,24 +11,36 @@ class ChatBrain:
 
         ConversationMemory.add(text)
 
-        resolved = ContextEngine.resolve(
-            text
-        )
+        resolved = ContextEngine.resolve(text)
 
         lower = resolved.lower()
 
-        if "career" in lower:
+        # Goal / Career Handling
+        if (
+            "goal" in lower
+            or "career" in lower
+            or "engineer" in lower
+            or "achieve" in text.lower()
+        ):
 
-            return ReasoningEngine.answer(
-                resolved
+            return (
+                "Your goal is AI Engineer. "
+                "Focus on Python, DSA, Machine Learning, "
+                "Deep Learning, Projects, and Internships."
             )
 
-        if "goal" in lower:
+        # Progress
+        elif "progress" in lower:
 
-            return ReasoningEngine.answer(
-                resolved
+            return (
+                "I can analyze your goal progress."
             )
 
-        return ConversationEngine.reply(
-            resolved
-        )
+        # Mission
+        elif "mission" in lower:
+
+            return (
+                "I can generate today's mission."
+            )
+
+        return ConversationEngine.reply(resolved)

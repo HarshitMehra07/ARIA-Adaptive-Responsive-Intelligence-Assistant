@@ -1,10 +1,28 @@
 class DecisionEngine:
 
     @staticmethod
-    def decide(options):
+    def decide(intent):
 
-        if not options:
+        decisions = {
 
-            return "No options provided"
+            "goal":
+            "goal_system",
 
-        return options[0]
+            "progress":
+            "progress_system",
+
+            "mission":
+            "mission_system",
+
+            "career":
+            "reasoning_system",
+
+            "chat":
+            "conversation_system"
+
+        }
+
+        return decisions.get(
+            intent,
+            "conversation_system"
+        )
