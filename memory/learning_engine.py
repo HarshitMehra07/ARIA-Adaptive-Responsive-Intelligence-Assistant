@@ -3,6 +3,8 @@ from memory.memory_manager import MemoryManager
 
 class LearningEngine:
 
+    knowledge = {}
+
     @staticmethod
     def learn(text):
 
@@ -20,6 +22,27 @@ class LearningEngine:
                 40
             )
 
-            return True
+        return True
 
-        return False
+    @staticmethod
+    def learn_fact(key, value):
+
+        LearningEngine.knowledge[key] = value
+
+        print(
+            "Learned:",
+            key
+        )
+
+    @staticmethod
+    def get(key):
+
+        return LearningEngine.knowledge.get(
+            key,
+            None
+        )
+
+    @staticmethod
+    def get_all():
+
+        return LearningEngine.knowledge
