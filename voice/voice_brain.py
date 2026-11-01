@@ -4,6 +4,10 @@ from voice.wake_word import WakeWord
 
 from memory.aria_brain import ARIABrain
 
+from memory.aria_brain import (
+    ARIABrain
+)
+
 
 class VoiceBrain:
 
@@ -11,25 +15,32 @@ class VoiceBrain:
     def run():
 
         print(
-            "\nVoice Brain Started"
+            "Voice Brain Started"
         )
 
         while True:
 
-            text = SpeechToText.listen()
+            text = input(
+                "You: "
+            )
 
-            if text.lower() == "exit":
-
-                print("Stopping")
+            if text == "exit":
 
                 break
 
-            if WakeWord.detect(text):
-
-                result = ARIABrain.process(text)
-
-                response = result["response"]
-
-                TextToSpeech.speak(
-                    response
+            result = (
+                ARIABrain.process(
+                    text
                 )
+            )
+
+            print()
+
+            print(
+                "ARIA:",
+                result[
+                    "response"
+                ]
+            )
+
+            print()

@@ -1,3 +1,4 @@
+from memory.importance_engine import ImportanceEngine
 from memory.memory_manager import MemoryManager
 
 
@@ -14,12 +15,15 @@ class LearningEngine:
             "i like" in lower
             or "i love" in lower
             or "my favorite" in lower
+            or "my favourite" in lower
+            or "i prefer" in lower
+            or "my preferred" in lower
         ):
 
-            MemoryManager.save_memory(
+            return MemoryManager.save_memory(
                 "preference",
                 text,
-                40
+                max(40, ImportanceEngine.score(text)),
             )
 
         return True

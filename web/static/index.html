@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#050505">
+    <title>ARIA — Personal AI</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="ARIA home">
+          <span class="brand-mark" aria-hidden="true">A</span>
+          <span class="brand-name">ARIA<span class="brand-version">V1</span></span>
+        </a>
+        <div class="topbar-right">
+          <span class="local-label"><span class="local-lock" aria-hidden="true">◆</span> LOCAL SESSION</span>
+          <span id="connection" class="connection"><span class="connection-dot"></span><span id="connection-text">Connecting</span></span>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="neuron-panel" aria-labelledby="welcome-title">
+          <div class="panel-topline">
+            <span class="eyebrow">ARIA · PERSONAL INTELLIGENCE</span>
+            <span class="version-chip">ARIA 1.0</span>
+          </div>
+          <div class="atom-stage" id="neuron-stage" data-state="idle" role="img" aria-label="ARIA is ready">
+            <svg class="atom-model" viewBox="0 0 360 360" aria-hidden="true">
+              <defs>
+                <radialGradient id="nucleus-fill">
+                  <stop offset="0" stop-color="#fff"></stop>
+                  <stop offset=".24" stop-color="#b9faff"></stop>
+                  <stop offset=".66" stop-color="#00E5FF"></stop>
+                  <stop offset="1" stop-color="#00a8cb" stop-opacity=".8"></stop>
+                </radialGradient>
+                <radialGradient id="nucleus-aura">
+                  <stop offset=".3" stop-color="#00E5FF" stop-opacity=".5"></stop>
+                  <stop offset="1" stop-color="#00E5FF" stop-opacity="0"></stop>
+                </radialGradient>
+              </defs>
+              <g class="ambient-dust" aria-hidden="true">
+                <circle cx="47" cy="73" r="1.5"></circle><circle cx="291" cy="59" r="1"></circle>
+                <circle cx="315" cy="200" r="1.4"></circle><circle cx="67" cy="275" r="1"></circle>
+                <circle cx="279" cy="300" r="1.2"></circle><circle cx="37" cy="181" r="1"></circle>
+                <circle cx="163" cy="36" r="1"></circle><circle cx="218" cy="329" r="1"></circle>
+              </g>
+              <g class="energy-rays" aria-hidden="true">
+                <path d="M180 104V77M180 256v27M104 180H76M256 180h28M126 126l-19-19M234 234l19 19M234 126l19-19M126 234l-19 19M180 96V88M180 264v8M96 180H88M264 180h8M120 120l-6-6M240 240l6 6M240 120l6-6M120 240l-6 6"></path>
+              </g>
+              <g class="orbital orbital-one" transform="rotate(-27 180 180)">
+                <path id="orbit-path-one" class="orbit-path" d="M 316 180 A 136 62 0 1 1 44 180 A 136 62 0 1 1 316 180"></path>
+                <circle class="electron electron-cyan" r="5">
+                  <animateMotion dur="12s" repeatCount="indefinite" rotate="auto"><mpath href="#orbit-path-one"></mpath></animateMotion>
+                </circle>
+              </g>
+              <g class="orbital orbital-two" transform="rotate(35 180 180)">
+                <path id="orbit-path-two" class="orbit-path" d="M 300 180 A 120 47 0 1 1 60 180 A 120 47 0 1 1 300 180"></path>
+                <circle class="electron electron-violet" r="4.3">
+                  <animateMotion dur="9s" begin="-3s" repeatCount="indefinite" rotate="auto"><mpath href="#orbit-path-two"></mpath></animateMotion>
+                </circle>
+              </g>
+              <g class="orbital orbital-three" transform="rotate(81 180 180)">
+                <path id="orbit-path-three" class="orbit-path" d="M 278 180 A 98 37 0 1 1 82 180 A 98 37 0 1 1 278 180"></path>
+                <circle class="electron electron-cyan" r="3.6">
+                  <animateMotion dur="7s" begin="-1.7s" repeatCount="indefinite" rotate="auto"><mpath href="#orbit-path-three"></mpath></animateMotion>
+                </circle>
+              </g>
+              <circle class="nucleus-aura" cx="180" cy="180" r="71"></circle>
+              <circle class="nucleus-corona" cx="180" cy="180" r="48"></circle>
+              <circle class="nucleus" cx="180" cy="180" r="28"></circle>
+              <circle class="nucleus-highlight" cx="171" cy="170" r="6"></circle>
+            </svg>
+            <div class="neuron-caption"><span class="caption-line"></span><span>ARIA · ELECTRONIC CORE</span><span class="caption-line"></span></div>
+          </div>
+          <div class="neuron-copy">
+            <h1 id="welcome-title">Intelligence, <span>in orbit.</span></h1>
+            <p>Your personal AI system, ready to think alongside you.</p>
+          </div>
+          <div class="state-card">
+            <span class="state-indicator" aria-hidden="true"></span>
+            <div>
+              <span class="state-label">ARIA · SYSTEM STATUS</span>
+              <strong id="aria-state">Ready when you are</strong>
+            </div>
+            <span class="state-mode" id="state-mode">IDLE</span>
+          </div>
+          <div class="voice-controls">
+            <div class="voice-heading">
+              <div><span class="eyebrow">VOICE INTERFACE</span><span class="voice-caption">Microphone access starts only on request</span></div>
+              <select id="voice-persona" aria-label="Assistant voice identity">
+                <option value="aria">ARIA Voice</option>
+                <option value="jarvis">JARVIS-Style Voice Mode</option>
+              </select>
+              <select id="voice-gender" aria-label="Voice type">
+                <option value="">System default</option>
+                <option value="female">Female voices</option>
+                <option value="male">Male voices</option>
+              </select>
+              <select id="voice-select" aria-label="Speech voice" disabled>
+                <option value="">System default</option>
+              </select>
+            </div>
+            <div class="voice-actions">
+              <button id="mic-button" class="button button-voice" type="button" aria-label="Start microphone recording">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"></rect><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3m-4 0h8"></path></svg>
+                <span>Talk to ARIA</span>
+              </button>
+              <button id="stop-speech" class="button button-stop" type="button" disabled>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2"></rect></svg>
+                <span>Stop speech</span>
+              </button>
+            </div>
+            <label class="mode-toggle">
+              <input id="continuous-listening" type="checkbox">
+              <span>Keep listening between responses</span>
+            </label>
+            <p id="voice-status" class="voice-status" aria-live="polite">Text chat is ready. Voice is optional.</p>
+            <p class="privacy-note"><span aria-hidden="true">ⓘ</span> Microphone access starts only when you choose it. Finished audio is sent to Google for transcription.</p>
+            <div id="recording-actions" class="recording-actions" hidden>
+              <button id="finish-recording" class="button button-finish" type="button" disabled>Stop &amp; transcribe</button>
+              <button id="cancel-recording" class="button button-cancel" type="button">Cancel recording</button>
+            </div>
+            <div class="privacy-controls">
+              <button id="vision-button" class="button button-cancel" type="button" aria-pressed="false">Enable camera</button>
+              <span id="vision-status" class="privacy-status" role="status">Camera off. Identity and emotion recognition are disabled.</span>
+            </div>
+            <label class="mode-toggle">
+              <input id="ambient-mode" type="checkbox">
+              <span>Ambient break reminders (focused-work timer only)</span>
+            </label>
+            <p class="privacy-note">Ambient mode is off by default. When enabled, ARIA uses only this session’s timer; it does not monitor your screen, microphone, or camera.</p>
+          </div>
+          <div class="panel-footer"><span>LOOPBACK ONLY</span><span>CLOUD AI MAY BE USED</span></div>
+        </section>
+
+        <section class="chat-panel" aria-labelledby="chat-title">
+          <div class="chat-header">
+            <div>
+              <span class="eyebrow">YOUR SPACE</span>
+              <h2 id="chat-title">Conversation</h2>
+            </div>
+            <span class="chat-session"><span></span> ACTIVE SESSION</span>
+          </div>
+          <div id="messages" class="messages" role="log" aria-live="polite" aria-relevant="additions text">
+            <div id="welcome-message" class="welcome-message">
+              <span class="welcome-icon" aria-hidden="true">✳</span>
+              <h3>Good to have you here.</h3>
+              <p>Ask a question, explore an idea, or tell me what you’re working on.</p>
+              <div class="suggestions">
+                <button class="suggestion" type="button">Help me plan my day</button>
+                <button class="suggestion" type="button">What can you help me with?</button>
+              </div>
+            </div>
+          </div>
+          <div id="error-banner" class="error-banner" role="alert" hidden></div>
+          <form id="chat-form" class="composer">
+            <label class="sr-only" for="chat-input">Message ARIA</label>
+            <textarea id="chat-input" name="message" rows="1" maxlength="4000" placeholder="Message ARIA…" autocomplete="off"></textarea>
+            <div class="composer-footer">
+              <span class="composer-hint">Enter to send <span>·</span> Shift + Enter for a new line</span>
+              <button id="send-button" class="send-button" type="submit" aria-label="Send message" disabled>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+              </button>
+            </div>
+          </form>
+          <p class="chat-disclosure">ARIA’s answers may use configured cloud AI services. Avoid sharing sensitive information.</p>
+        </section>
+      </main>
+      <footer class="mobile-footer"><span>ARIA</span><span>LOCAL SESSION</span></footer>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

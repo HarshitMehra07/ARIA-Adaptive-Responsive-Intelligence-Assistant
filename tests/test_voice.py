@@ -1,3 +1,5 @@
 from voice.voice_brain import VoiceBrain
 
-VoiceBrain.run()
+
+if __name__ == "__main__":
+    VoiceBrain.run()

@@ -31,6 +31,12 @@ _UNSUPPORTED_LEADS = re.compile(
     r"purchase|buy|delete|install|change settings)\b",
     re.IGNORECASE,
 )
+_SHELL_EXECUTION_REQUEST = re.compile(
+    r"^(?:please\s+)?(?:run|execute)\s+(?:(?:the|this|a)\s+)?"
+    r"(?:shell(?:\s+command)?|powershell(?:\.exe)?|command prompt|terminal|"
+    r"cmd(?:\.exe)?|command)\b",
+    re.IGNORECASE,
+)
 
 
 def detect_computer_command(text: str) -> ComputerCommand | None:
@@ -38,6 +44,12 @@ def detect_computer_command(text: str) -> ComputerCommand | None:
     lowered = original.casefold()
     if not lowered:
         return None
+
+    if _SHELL_EXECUTION_REQUEST.match(original):
+        return ComputerCommand(
+            "unsupported",
+            message="ARIA does not run shell or terminal commands from browser chat.",
+        )
 
     if lowered in {
         "stop automation",

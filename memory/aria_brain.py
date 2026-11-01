@@ -4,7 +4,7 @@ from memory.entity_extractor import EntityExtractor
 from memory.preference_engine import PreferenceEngine
 from memory.personality_engine import PersonalityEngine
 from memory.decision_engine import DecisionEngine
-
+from core.awareness_engine import AwarenessEngine 
 from memory.reasoning_engine import ReasoningEngine
 from memory.conversation_engine import ConversationEngine
 from memory.goal_advisor import GoalAdvisor
@@ -37,51 +37,39 @@ class ARIABrain:
         system = DecisionEngine.decide(intent)
 
         response = ""
+        awareness = None
 
         if system == "goal_system":
-
-            response = (
-                "Goal System Activated"
-            )
+            response = "Goal System Activated"
 
         elif system == "progress_system":
-
-            response = (
-                "Progress System Activated"
-            )
+            response = "Progress System Activated"
 
         elif system == "mission_system":
-
-            response = (
-                "Mission System Activated"
-            )
+            response = "Mission System Activated"
 
         elif system == "reasoning_system":
-
-            response = (
-                ReasoningEngine.answer(text)
-            )
+            response = ReasoningEngine.answer(text)
 
         else:
+            response = ConversationEngine.reply(text)
+            awareness = AwarenessEngine.observe()
 
-            response = (
-                ConversationEngine.reply(text)
-            )
-
-        return {        
-
+        return {
             "intent": intent,
 
-            "emotion": emotion,
+         "emotion": emotion,
 
-            "entities": entities,
+         "entities": entities,
+  
+         "preferences": preferences,
 
-            "preferences": preferences,
+         "personality": personality,
 
-            "personality": personality,
+         "system": system,
+  
+         "response": response,
 
-            "system": system,
-
-            "response": response
-
-        }
+         "awareness": awareness
+  
+      }
